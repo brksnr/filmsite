@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+import { Button } from './components/ui/button'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,6 +21,10 @@ function App() {
             <p>/</p>
             <button>Üye Ol</button>
         </div>
+      </div>
+
+      <div className='bg-[url("images/1.jpg")] w-screen h-screen'>
+        <Button></Button>
       </div>
       
     </>
