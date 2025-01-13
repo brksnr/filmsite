@@ -5,7 +5,7 @@ export function HomePage(){
     return(
         <>
         <Footer></Footer>
-              <div className='bg-[url("images/1.jpg")] w-screen h-screen flex flex-col md:flex-row justify-center items-center gap-5'>
+              <div className='bg-[url("images/1.jpg")] max-w-screen h-screen flex flex-col md:flex-row justify-center items-center gap-5'>
                 <div class="flex items-center w-full max-w-md">
                   <input
                     type="text"
