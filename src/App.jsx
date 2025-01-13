@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
 function App() {
@@ -8,9 +7,19 @@ function App() {
 
   return (
     <>
-      <div className='border flex w-full'>
-        <p>dsadsa</p>
-        <p>asdadsa</p>
+      <div className='flex justify-evenly items-center'>
+        <img src='images/filmlogo.png' className='w-24 h-24'></img>
+        <div className='flex gap-4'>
+            <button>Filmler</button>
+            <button>Oyuncular</button>
+            <button>Yönetmenler</button>
+            <button>Türler</button>
+        </div>
+        <div className='flex gap-4'>
+            <button>Giriş Yap</button>
+            <p>/</p>
+            <button>Üye Ol</button>
+        </div>
       </div>
       
     </>
