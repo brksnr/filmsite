@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Footer } from "@/layout/Footer";
+import { Header } from "@/layout/Header";
 import { Button } from "@/components/ui/button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -25,7 +25,7 @@ export function FilmListPage() {
 
   return (
     <>
-    <Footer></Footer>
+    <Header></Header>
     <div className="flex justify-between">
         <div className="w-1/6  "></div> 
         <div className=" flex flex-wrap gap-10 justify-center">
@@ -34,11 +34,11 @@ export function FilmListPage() {
                     <img onClick={() => handleFilmDetail(film.id)} src={film.imageUrl} className="rounded-xl sm:w-72 sm:h-96"></img>
                     <div className="flex justify-between items-center">
                             <div className="flex flex-col gap-4">
-                                <p>{film.name}</p>
-                                <p>{film.genre}</p>
+                                <p className="font-roboto font-bold">{film.name}</p>
+                                <p className="font-roboto font-bold">{film.genre}</p>
                             </div>
                             <div>
-                                <Button className="rounded-full">{film.imdbRank}</Button>
+                                <Button className="rounded-full font-roboto font-bold">{film.imdbRank}</Button>
                             </div>
                     </div>
                 </div>

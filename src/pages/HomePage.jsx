@@ -1,10 +1,10 @@
 import { Button } from "../components/ui/button";
-import { Footer } from "../layout/Footer";
+import { Header } from "../layout/Header";
 
 export function HomePage(){
     return(
         <>
-        <Footer></Footer>
+        <Header></Header>
               <div className='bg-[url("images/1.jpg")] max-w-screen h-screen flex flex-col md:flex-row justify-center items-center gap-5'>
                 <div className="flex items-center w-full max-w-md">
                   <input
