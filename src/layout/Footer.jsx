@@ -1,15 +1,20 @@
 import { useState } from "react"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export function Footer(){
 
-    const [showMenu, setShowMenu] = useState(false);
+    const history = useHistory();
+
+    const handleRedirect = () => {
+        history.push("/films");
+    }
 
     return(
         <>
-        <div className='flex justify-evenly items-center'>
+        <div className='flex justify-evenly items-center pb-10'>
                 <img src='images/filmlogo.png' className='w-24 h-24'></img>
                 <div className='gap-4 hidden md:flex'>
-                    <button>Filmler</button>
+                    <button onClick={handleRedirect}>Filmler</button>
                     <button>Oyuncular</button>
                     <button>Yönetmenler</button>
                     <button>Türler</button>
