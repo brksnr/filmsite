@@ -7,6 +7,7 @@ import { StarListPage } from './pages/StarListPage'
 import { StarDetail } from './components/ui/StarDetail'
 import { GenreListPage } from './pages/GenreListPage'
 import { LoginPage } from './pages/LoginPage'
+import { SignUpPage } from './pages/SignUpPage'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/filmdetail/:id" component={FilmDetail} />
               <Route path="/stardetail/:id" component={StarDetail} />
               <Route path="/login" component={LoginPage} />
+              <Route path="/signup" component={SignUpPage} />
           </Switch>
       </Router>
     </>

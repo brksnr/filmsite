@@ -19,11 +19,19 @@ export function Header(){
         history.push("/genres");
     }
 
+    const handleLoginPage = () => {
+        history.push("/login");
+    }
+
+    const handleSignUpPage = () => {
+        history.push("/signup");
+    }
+
 
 
     return(
         <>
-        <div className='flex justify-evenly items-center mb-10 bg-blue-500'>
+        <div className='flex justify-evenly items-center  bg-blue-500'>
         <img src='images/filmlogo.png' onClick={handleHomePage} className='w-24 h-24'></img>
                 <div className='gap-4 hidden md:flex'>
                     <button className="font-roboto font-bold" onClick={handleRedirect}>Filmler</button>
@@ -33,9 +41,9 @@ export function Header(){
                 </div>
                 <div className='flex gap-4 items-center'>
                     <img src="images/user.png" className="w-9 h-9"></img>
-                    <button className="font-roboto font-bold">Giriş Yap</button>
+                    <button className="font-roboto font-bold" onClick={handleLoginPage}>Giriş Yap</button>
                     <p>/</p>
-                    <button className="font-roboto font-bold">Üye Ol</button>
+                    <button className="font-roboto font-bold" onClick={handleSignUpPage}>Üye Ol</button>
                 </div>
               </div>
         </>

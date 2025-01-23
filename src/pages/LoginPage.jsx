@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Header } from "@/layout/Header";
 
 export function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -13,7 +14,6 @@ export function LoginPage() {
 
   const onSubmit = (data) => {
     setIsLoading(true);
-   
     console.log(data);
     setTimeout(() => setIsLoading(false), 2000);
   };
@@ -23,7 +23,9 @@ export function LoginPage() {
   };
 
   return (
-    <div className="flex h-screen w-full items-center justify-center px-4">
+    <>
+    <Header></Header>
+    <div className="flex justify-center items-center h-screen">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
@@ -67,5 +69,6 @@ export function LoginPage() {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 }
