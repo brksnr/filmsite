@@ -37,7 +37,7 @@ export function FilmDetail(){
                             <hr />
                             <div className="flex "><h3 className="font-roboto font-bold mr-2">Description :</h3><p className="font-roboto">{film.description}</p></div>
                             <hr />
-                            <div className="flex "><h3 className="font-roboto font-bold mr-2">Genre :</h3><p className="font-roboto">{film.genre}</p></div>
+                            <div className="flex "><h3 className="font-roboto font-bold mr-2">Genre :</h3><p className="font-roboto">{film.genre.map((genre) => genre.name).join(", ")}</p></div>
                             <hr />
                             <div className="flex "><h3 className="font-roboto font-bold mr-2">Imdb :</h3><p className="font-roboto">{film.imdbRank}</p></div>
                             <hr />
