@@ -1,29 +1,23 @@
+import { getAllStars } from "@/actions/filmActions";
 import { Button } from "@/components/ui/button";
 import { SideBar } from "@/components/ui/sideBar";
 import { Header } from "@/layout/Header";
 import axios from "axios";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export function StarListPage(){
-    const [stars, setStars] = useState([]);
     const history = useHistory();
+    const dispatch = useDispatch();
+    const stars = useSelector((state) => state.films.stars);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/stars') 
-          .then(response => {
-            setStars(response.data);
-          })
-          .catch(error => {
-            console.error('Error fetching data', error);
-          });
-      }, []);
+      dispatch(getAllStars());
+    }, [dispatch]);
 
-      const handleStarDetail = (id) => {
-        history.push(`/stardetail/${id}`);
-      };
-
+   
 
     return(
         <>

@@ -21,3 +21,13 @@ export const fetchGenres = async () => {
         throw error; 
     }
 };
+
+export const fetchStars = async () => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/stars`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error fetching stars:", error);
+        throw error; 
+    }
+};
