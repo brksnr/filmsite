@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { SideBar } from "@/components/ui/sideBar";
 import { Header } from "@/layout/Header";
 import axios from "axios";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -22,18 +24,21 @@ export function StarListPage(){
         history.push(`/stardetail/${id}`);
       };
 
+
     return(
         <>
-            <Header></Header>
-            <div className="flex justify-between">
-                <div className="w-1/2"></div> 
-                <div className=" flex flex-wrap gap-10 justify-center border ">
-                    {stars.map((star) => (
+            <div className="min-h-screen bg-background">
+      <Header/>
+      <div className="flex">
+        <SideBar/>    
+        <main className="flex-1 p-4 md:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {stars.map((star) => (
                         <div  key={star.id} className="flex flex-col gap-4 transition-transform transform hover:scale-105 hover:shadow-lg rounded-xl">
-                            <img onClick={() => handleStarDetail(star.id)} src={star.starImg} className="hover:opacity-90 rounded-xl sm:w-72 sm:h-96"></img>
+                            <img onClick={() => handleStarDetail(star.id)} src={star.starImg} className="hover:opacity-90 rounded-xl sm:w-full sm:h-full"></img>
                             <div className="flex justify-between items-center">
                                     <div className="flex flex-col gap-4">
-                                        <p className="font-roboto font-bold">{star.fullName}</p>
+                                        <p className="text-xl text-black">{star.fullName}</p>
                                     </div>
                                     <div>
                                         <Button className="rounded-full font-roboto font-bold">{star.age}</Button>
@@ -41,9 +46,10 @@ export function StarListPage(){
                             </div>
                         </div>
                     ))}
-                </div>
-                <div className="w-1/2"></div>
-            </div>
+          </div>
+        </main>
+      </div>
+    </div>
             </>
     )
 }
