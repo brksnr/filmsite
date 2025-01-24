@@ -1,28 +1,25 @@
+import { getAllGenres } from "@/actions/filmActions";
 import { Button } from "@/components/ui/button";
 import { SideBar } from "@/components/ui/sideBar";
 import { Header } from "@/layout/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export function GenreListPage () {
-    const [genres, setGenres] = useState([]);
     const history = useHistory();
+    const dispatch = useDispatch();
+    const genres = useSelector((state) => state.films.genres);
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/genres') 
-          .then(response => {
-            setGenres(response.data);
-            console.log(response.data)
-          })
-          .catch(error => {
-            console.error('Error fetching data', error);
-          });
-      }, []);
-      
+     useEffect(() => {
+          dispatch(getAllGenres());
+      }, [dispatch]);
+
       const handleGenreClick = (genreName) => {
         history.push(`/films/by-genre?genre=${genreName}`);
       };
+      
 
     return (
         <>

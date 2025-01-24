@@ -7,14 +7,25 @@ import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.m
 import axios from "axios";
 import { Header } from "@/layout/Header";
 import { SideBar } from "@/components/ui/sideBar";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllFilms, setFilms } from "@/actions/filmActions";
 
 
 export function FilmListPage() {
-   const [films, setFilms] = useState([]);
     const [genre, setGenre] = useState(null);
     const location = useLocation();
     const history = useHistory();
+    const dispatch = useDispatch();
+    const films = useSelector((state) => state.films.films);
+    console.log(films);
 
+    useEffect(() => {
+      dispatch(getAllFilms());
+  }, [dispatch]);
+
+
+
+    /*
     useEffect(() => {
       const params = new URLSearchParams(location.search);
       const selectedGenre = params.get("genre");
@@ -43,6 +54,8 @@ export function FilmListPage() {
           });
       }
     }, [location.search]);
+    
+    */
     
     const handleFilmDetail = (id) => {
       history.push(`/filmdetail/${id}`);
