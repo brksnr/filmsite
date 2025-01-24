@@ -24,6 +24,14 @@ export function Header(){
         history.push("/genres");
     }
 
+    const handleLoginPage = () => {
+       history.push("/login");
+   }
+
+   const handleSignUpPage = () => {
+       history.push("/signup");
+   }
+
     return(
         <>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
@@ -79,13 +87,15 @@ export function Header(){
             <div className="px-3 py-2">
               <div className="space-y-1">
                <div className="flex items-center">
-                                     <Button variant="ghost" className=" justify-start">
-                                       <span>Log in</span>
-                                     </Button>
-                                     <p>/</p>
-                                     <Button variant="ghost" className=" justify-start">
-                                       <span>Sign Up</span>
-                                     </Button>
+               <Button onClick={handleLoginPage} variant="ghost" className=" justify-start">
+                        <span>Log in</span>
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                      </Button>
+                      <p>/</p>
+                      <Button onClick={handleSignUpPage} variant="ghost" className=" justify-start">
+                        <span>Sign Up</span>
+                        <i class="fa-solid fa-user-plus"></i>
+                      </Button>
                                  </div>
                                  <br/>
                

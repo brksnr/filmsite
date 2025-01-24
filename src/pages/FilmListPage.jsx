@@ -74,7 +74,7 @@ export function FilmListPage() {
             <Button variant="outline" size="sm">
               Genre <ChevronDown className="ml-1 h-4 w-4" />
             </Button>
-            <Button className="ml-5" variant="outline" size="sm">
+            <Button className="ml-5" variant="" size="sm">
               Sort
             </Button>
           </div>

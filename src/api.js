@@ -31,3 +31,23 @@ export const fetchStars = async () => {
         throw error; 
     }
 };
+
+export const fetchFilmById = async (id) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/films/${id}`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error fetching film by id:", error);
+        throw error; 
+    }
+};
+
+export const fetchStarById = async (id) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/stars/${id}`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error fetching star by id:", error);
+        throw error; 
+    }
+};

@@ -9,15 +9,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export function StarListPage(){
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const stars = useSelector((state) => state.films.stars);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const stars = useSelector((state) => state.films.stars);
 
-    useEffect(() => {
-      dispatch(getAllStars());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllStars());
+  }, [dispatch]);
 
-   
+      const handleStarDetail = (id) => {
+        history.push(`/stardetail/${id}`);
+      };
+
 
     return(
         <>

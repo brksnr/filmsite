@@ -1,11 +1,13 @@
-import { SET_FILMS, SET_GENRES, SET_STARS } from "@/actions/filmActions";
+import { SET_FILMS, SET_GENRES, SET_STARS, SET_SELECTED_FİLM, SET_SELECTED_STAR } from "@/actions/filmActions";
 
 
 
 const initialState = {
     films: [],
+    selectedFilm: null,
+    selectedStar: null,
     genres: [],
-    stars: []
+    stars: [],
 }
 
 const filmReducer = (state = initialState, action) => {
@@ -16,6 +18,10 @@ const filmReducer = (state = initialState, action) => {
             return { ...state, genres: action.payload}; 
         case SET_STARS:
             return { ...state, stars: action.payload};
+        case SET_SELECTED_FİLM:
+            return { ...state, selectedFilm: action.payload};    
+        case SET_SELECTED_STAR:
+            return { ...state, selectedStar: action.payload};
         default:
             return state
     }
