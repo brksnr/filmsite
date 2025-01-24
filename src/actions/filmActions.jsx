@@ -1,10 +1,11 @@
-import { fetchFilmById, fetchFilms, fetchGenres, fetchStarById, fetchStars } from "@/api";
+import { fetchFilmById, fetchFilms, fetchFilmsByGenre, fetchGenres, fetchStarById, fetchStars } from "@/api";
 
 export const SET_FILMS = 'SET_FILMS';
 export const SET_GENRES = 'SET_GENRES';
 export const SET_STARS = 'SET_STARS';
 export const SET_SELECTED_FİLM = 'SET_SELECTED_FİLM';
 export const SET_SELECTED_STAR = 'SET_SELECTED_STAR';
+export const SET_SELECTED_FİLM_BY_GENRE = 'SET_SELECTED_FİLM_BY_GENRE';
 
 export const setFilms = (films) => {
     return {
@@ -88,5 +89,22 @@ export const getStarById = (id) => async (dispatch) => {
         console.log("Selected star:", star);
     } catch(error){
         console.error("Error fetching selected star:", error);
+    }
+};
+
+export const setSelectedFilmByGenre = (genre) => async (dispatch) => {
+    return {
+        type: SET_SELECTED_FİLM_BY_GENRE,
+        payload: genre
+    }
+};
+
+export const getFilmsByGenre = (genre) => async (dispatch) => {
+    try {
+        const films = await fetchFilmsByGenre(genre);
+        dispatch(setFilms(films));
+        console.log("Filtered films:", films);
+    } catch(error){
+        console.error("Error fetching filtered films:", error);
     }
 };

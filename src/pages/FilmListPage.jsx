@@ -8,58 +8,30 @@ import axios from "axios";
 import { Header } from "@/layout/Header";
 import { SideBar } from "@/components/ui/sideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllFilms, setFilms } from "@/actions/filmActions";
+import { getAllFilms, getFilmsByGenre, setFilms } from "@/actions/filmActions";
 
 
 export function FilmListPage() {
-    const [genre, setGenre] = useState(null);
-    const location = useLocation();
     const history = useHistory();
     const dispatch = useDispatch();
     const films = useSelector((state) => state.films.films);
-    console.log(films);
-
-    useEffect(() => {
-      dispatch(getAllFilms());
-  }, [dispatch]);
 
 
-
-    /*
     useEffect(() => {
       const params = new URLSearchParams(location.search);
       const selectedGenre = params.get("genre");
-    
+
       if (selectedGenre) {
-        setGenre(selectedGenre); 
-        axios
-          .get(`http://localhost:8080/films/by-genre?genre=${selectedGenre}`)
-          .then((response) => {
-            setFilms(response.data);
-            console.log("Filtered films:", response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching filtered films", error);
-          });
+          dispatch(getFilmsByGenre(selectedGenre));
       } else {
-        setGenre(null);
-        axios
-          .get("http://localhost:8080/films")
-          .then((response) => {
-            setFilms(response.data);
-            console.log("All films:", response.data);
-          })
-          .catch((error) => {
-            console.error("Error fetching all films", error);
-          });
+          dispatch(getAllFilms());
       }
-    }, [location.search]);
-    
-    */
+  }, [dispatch, location.search]);
     
     const handleFilmDetail = (id) => {
       history.push(`/filmdetail/${id}`);
     };
+
 
   return (
     <div className="min-h-screen bg-background">

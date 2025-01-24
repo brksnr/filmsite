@@ -42,6 +42,16 @@ export const fetchFilmById = async (id) => {
     }
 };
 
+export const fetchFilmsByGenre = async (genre) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/films/by-genre?genre=${genre}`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error fetching films by genre:", error);
+        throw error; 
+    }
+};
+
 export const fetchStarById = async (id) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/stars/${id}`);
