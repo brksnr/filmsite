@@ -1,22 +1,12 @@
-import { SET_USER } from './userTypes'; 
-import { loginUser } from './api';
+
+export const SET_USER = "SET_USER";
 
 
-export const login = (email, password) => async (dispatch) => {
-    try {
-        const userData = await loginUser(email, password);
-        dispatch({
-            type: SET_USER,
-            payload: {
-                username: userData.username,
-                email: userData.email,
-                token: userData.token,
-            },
-        });
 
-        localStorage.setItem('token', userData.token);
 
-    } catch (error) {
-        console.error("Login Error:", error.message);
-    }
+export const loginUser = (userData) => {
+  return {
+    type: SET_USER,
+    payload: userData 
+  };
 };

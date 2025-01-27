@@ -1,7 +1,14 @@
-const { SET_USER } = require("@/actions/userAction");
+import { SET_USER } from "@/actions/userAction";
 
 
-const initialState = {};
+
+const initialState = {
+    user: {
+      token: null,
+      username: null,
+      email: null,
+    },
+  };
 
 
 const userReducer = (state = initialState, action) => {
@@ -9,9 +16,11 @@ const userReducer = (state = initialState, action) => {
         case SET_USER:
             return {
                 ...state,
-                username: action.payload.username,
-                email: action.payload.email,
-                token: action.payload.token,
+                user: {
+                  token: action.payload.token,
+                  username: action.payload.username,
+                  email: action.payload.email,
+                },
               };
         default:
             return state;
