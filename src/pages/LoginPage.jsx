@@ -6,12 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Header } from "@/layout/Header";
+import { SideBar } from "@/components/ui/SideBar";
 
 export function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  
   const onSubmit = (data) => {
     setIsLoading(true);
     console.log(data);
@@ -25,6 +27,7 @@ export function LoginPage() {
   return (
     <>
     <Header></Header>
+    
     <div className="flex justify-center items-center h-screen">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
