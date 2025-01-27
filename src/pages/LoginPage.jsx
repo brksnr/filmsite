@@ -20,9 +20,9 @@ export function LoginPage() {
   const user = useSelector((state) => state.user.user);
   console.log("User:", user);
 
+
   const onSubmit = async (data) => {
     setIsLoading(true);
-
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
         email: data.email,
@@ -32,6 +32,8 @@ export function LoginPage() {
       dispatch(loginUser({ token, username, email }));
       if (rememberMe) {
         localStorage.setItem("token", JSON.stringify(response.data.token));
+        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("email", response.data.email);
       }
       alert("Login successful!");
       history.push("/films");
