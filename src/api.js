@@ -3,7 +3,14 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8080';
 
 
-
+export const loginUser = async (email, password) => {
+    try {
+      const response = await axios.post(API_URL, { email, password });
+      return response.data;
+    } catch (error) {
+      throw new Error("Login failed: " + error.response?.data?.message || error.message);
+    }
+  };
 
 export const fetchFilms = async () => {
     try {
