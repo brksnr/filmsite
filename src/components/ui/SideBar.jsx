@@ -25,6 +25,10 @@ export function SideBar() {
     history.push("/signup");
   };
 
+  const handleFavoritesPage = () => {
+    history.push("/favoritefilms");
+  };
+
   const getGravatarUrl = (email) => {
     const emailHash = md5(email.trim().toLowerCase());
     return `https://www.gravatar.com/avatar/${emailHash}?d=identicon`;
@@ -66,7 +70,7 @@ export function SideBar() {
               )}
               
               <br />
-              <Button variant="ghost" className="w-full justify-start">
+              <Button onClick={handleFavoritesPage} variant="ghost" className="w-full justify-start">
                 <span>Favorites</span>
               </Button>
               <Button variant="ghost" className="w-full justify-start">

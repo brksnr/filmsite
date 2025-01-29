@@ -23,11 +23,16 @@ const userReducer = (state = initialState, action) => {
                   email: action.payload.email,
                 },
               };
-        case SET_FAVORITE_FILMS:
-          return {
-            ...state,
-            favoriteFilms : action.payload
-          }
+              case SET_FAVORITE_FILMS:
+                return {
+                  ...state,
+                  favoriteFilms: [...state.favoriteFilms, action.payload]
+                }
+                case "DELETE_FAVORITE_FILM":
+                return {
+                  ...state,
+                  favoriteFilms: state.favoriteFilms.filter((f) => f !== action.payload),
+                };
         default:
             return state;
     }

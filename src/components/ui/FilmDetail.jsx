@@ -9,11 +9,13 @@ import { SideBar } from "./sideBar";
 import { use } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilmById } from "@/actions/filmActions";
+import { userFavoriteFilms } from "@/actions/userAction";
 
 export function FilmDetail(){
     const { id } = useParams();
     const dispatch = useDispatch();
     const selectedFilm = useSelector((state) => state.films.selectedFilm);
+    
 
     useEffect(() => {
       dispatch(getFilmById(id));
@@ -22,6 +24,11 @@ export function FilmDetail(){
   if (!selectedFilm) {
     return <div>Loading...</div>;
   }
+
+  const addToFavorites = () => {
+    dispatch(userFavoriteFilms(selectedFilm));
+    console.log(userFavoriteFilms);
+  };
 
 
     return(
@@ -47,7 +54,7 @@ export function FilmDetail(){
                 <div className="flex justify-between flex-wrap">
                 <h1 className="text-4xl text-white md:text-5xl font-bold mb-4">{selectedFilm.name}</h1>
                   <div className="flex gap-2 items-center flex-wrap">
-                      <Button> <i class="fa-regular fa-heart"></i> Add To Favorites</Button>
+                      <Button onClick={addToFavorites}> <i class="fa-regular fa-heart"></i> Add To Favorites</Button>
                       <Button><i class="fa-regular fa-eye"></i>Add To Watch List</Button>
                   </div>
                 </div>

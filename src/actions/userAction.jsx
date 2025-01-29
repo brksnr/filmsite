@@ -1,6 +1,7 @@
 
 export const SET_USER = "SET_USER";
 export const SET_FAVORITE_FILMS = "SET_FAVORITE_FILMS";
+export const DELETE_FAVORITE_FILM = "DELETE_FAVORITE_FILM";
 
 
 
@@ -11,9 +12,16 @@ export const loginUser = (userData) => {
   };
 };
 
-export const userFavoriteFilms = (favoriteFilms) => {
+export const userFavoriteFilms = (favoriteFilm) => {
   return {
-    tpye: SET_FAVORITE_FILMS,
-    payload: favoriteFilms
+    type: SET_FAVORITE_FILMS,
+    payload: favoriteFilm
+  };
+};
+
+export const deleteFilmFromFavorites = (film) => {
+  return {
+    type: "DELETE_FAVORITE_FILM",
+    payload: film,
   };
 };

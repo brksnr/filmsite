@@ -5,26 +5,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllFilms, getFilmsByGenre } from "@/actions/filmActions";
 import { useState } from "react";
+import { deleteFilmFromFavorites } from "@/actions/userAction";
 
 export function FavoriteFilmsTable() {
   const dispatch = useDispatch();
-  const films = useSelector((state) => state.films.films);
+  const films = useSelector(state => state.user.favoriteFilms);
   const [selectedFilms, setSelectedFilms] = useState([]);
   console.log("bakalıms:", selectedFilms)
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const selectedGenre = params.get("genre");
-
-    if (selectedGenre) {
-      dispatch(getFilmsByGenre(selectedGenre));
-    } else {
-      dispatch(getAllFilms());
-    }
-  }, [dispatch, location.search]);
 
   const handleCheckboxChange = (film) => {
     setSelectedFilms((prevSelected) =>
@@ -34,6 +22,10 @@ export function FavoriteFilmsTable() {
     );
   };
 
+  const deleteFromFavorites = (film) => {
+     dispatch(deleteFilmFromFavorites(film));
+    setSelectedFilms((prevSelected) => prevSelected.filter((f) => f !== film));
+  };
   
   return (
     <div className="w-full mx-2 ">
@@ -50,7 +42,6 @@ export function FavoriteFilmsTable() {
           <TableHeader> 
               <TableRow key="">
                   <TableHead key="">
-                    <Checkbox/>
                   </TableHead>
                   <TableHead key="">
                     Film IMG
@@ -82,7 +73,7 @@ export function FavoriteFilmsTable() {
                   <TableCell>{film.name}</TableCell>
                   <TableCell>{film.director}</TableCell>
                   <TableCell>{film.imdbRank}</TableCell>
-                  <TableCell><Button variant="outline"><i className="fa-solid fa-trash-can text-red-500"></i></Button></TableCell>
+                  <TableCell><Button onClick={() => deleteFromFavorites(film)} variant="outline"><i className="fa-solid fa-trash-can text-red-500"></i></Button></TableCell>
                 </TableRow>
               ))
             ) : (
