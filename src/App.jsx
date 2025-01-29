@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from './actions/userAction'
 import axios from 'axios'
+import { Favorites } from './pages/Favorites'
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
               <Route path="/genres" component={GenreListPage} />
               <Route path="/filmdetail/:id" component={FilmDetail} />
               <Route path="/stardetail/:id" component={StarDetail} />
+              <Route path="/favoritefilms" component={Favorites} />
               <Route path="/login" component={LoginPage} />
               <Route path="/signup" component={SignUpPage} />
           </Switch>
