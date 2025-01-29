@@ -1,4 +1,4 @@
-import { SET_USER } from "@/actions/userAction";
+import { SET_FAVORITE_FILMS, SET_USER } from "@/actions/userAction";
 
 
 
@@ -8,6 +8,7 @@ const initialState = {
       username: null,
       email: null,
     },
+    favoriteFilms: [],
   };
 
 
@@ -22,6 +23,11 @@ const userReducer = (state = initialState, action) => {
                   email: action.payload.email,
                 },
               };
+        case SET_FAVORITE_FILMS:
+          return {
+            ...state,
+            favoriteFilms : action.payload
+          }
         default:
             return state;
     }
