@@ -52,8 +52,6 @@ function App() {
     verifyToken();
   }, []);
   
-  
-
   return (
     <>
       <Router>

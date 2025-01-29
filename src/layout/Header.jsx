@@ -1,13 +1,20 @@
 import { Button } from "@/components/ui/button";
+import md5 from "blueimp-md5";
 import { Menu, Search } from "lucide-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export function Header(){
-
-      const [sidebarOpen, setSidebarOpen] = useState(false);
-
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const history = useHistory();
+    const user = useSelector((state) => state.user.user);
+    const token = localStorage.getItem("token");
+
+    const getGravatarUrl = (email) => {
+      const emailHash = md5(email.trim().toLowerCase());
+      return `https://www.gravatar.com/avatar/${emailHash}?d=identicon`;
+    };
 
     const handleFilmList = () => {
         history.push("/films");
@@ -87,15 +94,30 @@ export function Header(){
             <div className="px-3 py-2">
               <div className="space-y-1">
                <div className="flex items-center">
-               <Button onClick={handleLoginPage} variant="ghost" className=" justify-start">
-                        <span>Log in</span>
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                      </Button>
-                      <p>/</p>
-                      <Button onClick={handleSignUpPage} variant="ghost" className=" justify-start">
-                        <span>Sign Up</span>
-                        <i class="fa-solid fa-user-plus"></i>
-                      </Button>
+               {!token ? (
+                <div className="flex items-center">
+                  <Button onClick={handleLoginPage} variant="ghost" className=" justify-start">
+                    <span>Log in</span>
+                    <i className="fa-solid fa-right-to-bracket"></i>
+                  </Button>
+                  <p>/</p>
+                  <Button onClick={handleSignUpPage} variant="ghost" className=" justify-start">
+                    <span>Sign Up</span>
+                    <i className="fa-solid fa-user-plus"></i>
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-4">
+                  {user && user.email && (
+                    <img
+                      src={getGravatarUrl(user.email)}
+                      alt="User Avatar"
+                      className="w-10 h-10 rounded-full"
+                    />
+                  )}
+                  <p className="flex items-center gap-4">{user.username} <i class="fa-solid fa-arrow-right-from-bracket"></i></p>
+                </div>
+              )}
                                  </div>
                                  <br/>
                

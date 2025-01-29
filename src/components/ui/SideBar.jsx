@@ -11,6 +11,12 @@ export function SideBar() {
 
   const token = localStorage.getItem("token");
 
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  }
+
   const handleLoginPage = () => {
     history.push("/login");
   };
@@ -55,9 +61,10 @@ export function SideBar() {
                       className="w-10 h-10 rounded-full"
                     />
                   )}
-                  <p className="flex items-center gap-4">{user.username} <i class="fa-solid fa-arrow-right-from-bracket"></i></p>
+                  <p className="flex items-center gap-4">{user.username} <Button onClick={handleLogout} variant="ghost"><i class="fa-solid fa-arrow-right-from-bracket"></i></Button></p>
                 </div>
               )}
+              
               <br />
               <Button variant="ghost" className="w-full justify-start">
                 <span>Favorites</span>
