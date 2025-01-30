@@ -24,10 +24,10 @@ const userReducer = (state = initialState, action) => {
                 },
               };
               case SET_FAVORITE_FILMS:
-                return {
-                  ...state,
-                  favoriteFilms: [...state.favoriteFilms, action.payload]
-                }
+            return {
+                ...state,
+                favoriteFilms: action.payload,  
+            };
                 case "DELETE_FAVORITE_FILM":
                 return {
                   ...state,

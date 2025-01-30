@@ -6,13 +6,15 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { deleteFilmFromFavorites } from "@/actions/userAction";
+import { deleteFilmFromFavorites, userFavoriteFilms } from "@/actions/userAction";
+import { useEffect } from "react";
+import { fetchFavorites } from "@/api";
 
 export function FavoriteFilmsTable() {
   const dispatch = useDispatch();
   const films = useSelector(state => state.user.favoriteFilms);
+  const userName = useSelector((state) => state.user.user.username);
   const [selectedFilms, setSelectedFilms] = useState([]);
-  console.log("bakalıms:", selectedFilms)
 
   const handleCheckboxChange = (film) => {
     setSelectedFilms((prevSelected) =>
@@ -22,10 +24,20 @@ export function FavoriteFilmsTable() {
     );
   };
 
-  const deleteFromFavorites = (film) => {
-     dispatch(deleteFilmFromFavorites(film));
-    setSelectedFilms((prevSelected) => prevSelected.filter((f) => f !== film));
-  };
+  useEffect(() => {
+    const username = userName;
+    fetchFavorites(username)  
+      .then(favorites => {
+        dispatch(userFavoriteFilms(favorites)); 
+        console.log("Favorite films:", favorites);
+      })
+      .catch(error => {
+        console.error("Error fetching favorites:", error);
+      });
+  }, [dispatch, userName]); 
+  
+    
+ 
   
   return (
     <div className="w-full mx-2 ">

@@ -10,6 +10,7 @@ import { Header } from "@/layout/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/actions/userAction";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { SideBar } from "@/components/ui/SideBar";
 
 export function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -52,6 +53,9 @@ export function LoginPage() {
   return (
     <>
       <Header />
+      <div className="flex">
+      <SideBar/>
+      <div className="flex border w-screen justify-center">
       <div className="flex justify-center items-center h-screen">
         <Card className="mx-auto max-w-sm">
           <CardHeader>
@@ -103,6 +107,8 @@ export function LoginPage() {
             </form>
           </CardContent>
         </Card>
+      </div>
+      </div>
       </div>
     </>
   );

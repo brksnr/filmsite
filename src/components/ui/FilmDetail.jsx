@@ -1,20 +1,19 @@
 import { Header } from "@/layout/Header";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "./button";
-import { Badge, ChevronDown, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { Card, CardContent } from "./card";
 import { SideBar } from "./sideBar";
-import { use } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilmById } from "@/actions/filmActions";
-import { userFavoriteFilms } from "@/actions/userAction";
+import { addFavoriteFilm } from "@/api";
 
 export function FilmDetail(){
     const { id } = useParams();
     const dispatch = useDispatch();
     const selectedFilm = useSelector((state) => state.films.selectedFilm);
+    const userName = useSelector((state) => state.user.user.username);
     
 
     useEffect(() => {
@@ -25,10 +24,20 @@ export function FilmDetail(){
     return <div>Loading...</div>;
   }
 
-  const addToFavorites = () => {
-    dispatch(userFavoriteFilms(selectedFilm));
-    console.log(userFavoriteFilms);
+
+
+  
+  const handleAddFavorite = (id) => {
+    const username = userName;
+    addFavoriteFilm(username, id)
+      .then(response => {
+        console.log("Film added to favorites:ss", response);
+      })
+      .catch(error => {
+        console.error("Error adding to favorites:", error);
+      });
   };
+  
 
 
     return(
@@ -54,7 +63,7 @@ export function FilmDetail(){
                 <div className="flex justify-between flex-wrap">
                 <h1 className="text-4xl text-white md:text-5xl font-bold mb-4">{selectedFilm.name}</h1>
                   <div className="flex gap-2 items-center flex-wrap">
-                      <Button onClick={addToFavorites}> <i class="fa-regular fa-heart"></i> Add To Favorites</Button>
+                      <Button onClick={() => handleAddFavorite(id)}> <i class="fa-regular fa-heart"></i> Add To Favorites</Button>
                       <Button><i class="fa-regular fa-eye"></i>Add To Watch List</Button>
                   </div>
                 </div>

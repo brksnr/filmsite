@@ -3,6 +3,8 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8080';
 
 
+
+
 export const loginUser = async (email, password) => {
     try {
       const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
@@ -71,3 +73,41 @@ export const fetchStarById = async (id) => {
         throw error; 
     }
 };
+
+export const addFavoriteFilm = async (username, filmId) => {
+    try {
+        
+        const response = await axios.post(`${API_BASE_URL}/${username}/favorites?filmId=${filmId}`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error adding favorite film:", error);
+        throw error; 
+    }
+};
+
+
+export const fetchFavorites = async () => {
+    const username = localStorage.getItem("username");
+    if (!username) {
+        throw new Error("Username is required but not found.");
+    }
+    try {
+        const response = await axios.get(`${API_BASE_URL}/${username}/favorites`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error fetching favorite films:", error);
+        throw error; 
+    }
+};
+
+export const removeFavoriteFilm = async (username, filmId) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/${username}/favorites?filmId=${filmId}`);
+        return response.data; 
+    } catch (error) {
+        console.error("Error removing favorite film:", error);
+        throw error; 
+    }
+};
+
+

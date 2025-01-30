@@ -12,12 +12,13 @@ export const loginUser = (userData) => {
   };
 };
 
-export const userFavoriteFilms = (favoriteFilm) => {
+export const userFavoriteFilms = (favoriteFilms) => {
   return {
     type: SET_FAVORITE_FILMS,
-    payload: favoriteFilm
+    payload: favoriteFilms, 
   };
 };
+
 
 export const deleteFilmFromFavorites = (film) => {
   return {

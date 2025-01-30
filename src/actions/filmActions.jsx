@@ -69,7 +69,6 @@ export const getFilmById = (id) => async (dispatch) => {
     try {
         const film = await fetchFilmById(id);
         dispatch(setSelectedFilm(film));
-        console.log("Selected film:", film);
     } catch(error){
         console.error("Error fetching selected film:", error);
     }
