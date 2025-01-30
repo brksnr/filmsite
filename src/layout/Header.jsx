@@ -23,9 +23,7 @@ export function Header(){
         history.push("/stars");
     }
 
-    const handleHomePage = () => {
-        history.push("/home");
-    }
+    
 
     const handleGenrePage = () => {
         history.push("/genres");
@@ -115,7 +113,7 @@ export function Header(){
                       className="w-10 h-10 rounded-full"
                     />
                   )}
-                  <p className="flex items-center gap-4">{user.username} <i class="fa-solid fa-arrow-right-from-bracket"></i></p>
+                  <p className="flex items-center gap-4">{user.username} <i className="fa-solid fa-arrow-right-from-bracket"></i></p>
                 </div>
               )}
                                  </div>

@@ -20,9 +20,9 @@ export const userFavoriteFilms = (favoriteFilms) => {
 };
 
 
-export const deleteFilmFromFavorites = (film) => {
+export const deleteFilmFromFavorites = (filmId) => {
   return {
     type: "DELETE_FAVORITE_FILM",
-    payload: film,
+    payload: filmId,
   };
 };

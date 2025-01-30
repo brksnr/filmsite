@@ -100,9 +100,13 @@ export const fetchFavorites = async () => {
     }
 };
 
-export const removeFavoriteFilm = async (username, filmId) => {
+export const removeFavoriteFilm = async (filmId) => {
+    const username = localStorage.getItem("username");
+    if (!username) {
+        throw new Error("Username is required but not found.");
+    }
     try {
-        const response = await axios.delete(`${API_BASE_URL}/${username}/favorites?filmId=${filmId}`);
+        const response = await axios.delete(`${API_BASE_URL}/${username}/favorites/${filmId}`);
         return response.data; 
     } catch (error) {
         console.error("Error removing favorite film:", error);

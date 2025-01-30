@@ -28,11 +28,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 favoriteFilms: action.payload,  
             };
-                case "DELETE_FAVORITE_FILM":
-                return {
-                  ...state,
-                  favoriteFilms: state.favoriteFilms.filter((f) => f !== action.payload),
-                };
+            case "DELETE_FAVORITE_FILM":
+              return {
+                ...state,
+                favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload), 
+              };
         default:
             return state;
     }

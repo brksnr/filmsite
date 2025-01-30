@@ -8,13 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { deleteFilmFromFavorites, userFavoriteFilms } from "@/actions/userAction";
 import { useEffect } from "react";
-import { fetchFavorites } from "@/api";
+import { fetchFavorites, removeFavoriteFilm } from "@/api";
 
 export function FavoriteFilmsTable() {
   const dispatch = useDispatch();
   const films = useSelector(state => state.user.favoriteFilms);
   const userName = useSelector((state) => state.user.user.username);
   const [selectedFilms, setSelectedFilms] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  console.log("bakalım film id'ye :", selectedFilms)
 
   const handleCheckboxChange = (film) => {
     setSelectedFilms((prevSelected) =>
@@ -34,45 +36,58 @@ export function FavoriteFilmsTable() {
       .catch(error => {
         console.error("Error fetching favorites:", error);
       });
-  }, [dispatch, userName]); 
-  
-    
- 
+  }, [dispatch, userName]);
+
+  const deleteFilm = (filmId) => {
+    removeFavoriteFilm(filmId)
+    .then(() => {
+      console.log("film removed from favorites");
+      dispatch(deleteFilmFromFavorites(filmId))
+    })
+    .catch((error) => {
+      console.log("error removing film : ", error);
+    })
+
+  };
+
+  const filteredFilms = films.filter(film =>
+    film.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   
   return (
     <div className="w-full mx-2 ">
       <div className="flex items-center py-4">
-        <Input
+      <Input
           placeholder="Search by name..."
-          value=""
-          onChange=""
           className="max-w-sm"
+          value={searchQuery} 
+          onChange={(e) => setSearchQuery(e.target.value)} 
         />
       </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader> 
-              <TableRow key="">
-                  <TableHead key="">
+              <TableRow>
+                  <TableHead>
                   </TableHead>
-                  <TableHead key="">
+                  <TableHead>
                     Film IMG
                   </TableHead>
-                  <TableHead key="">
+                  <TableHead>
                     Film Name
                   </TableHead>
-                  <TableHead key="">
+                  <TableHead>
                     Director
                   </TableHead>
-                  <TableHead key="">
+                  <TableHead>
                     Imdb Rank
                   </TableHead> 
               </TableRow>
           </TableHeader>
           <TableBody>
-            {films.length ? (
-              films.map((film, index) => (
-                <TableRow key={index}>
+            {filteredFilms.length ? (
+              filteredFilms.map((film) => (
+                <TableRow key={film.id}>
                   <TableCell>
                   <Checkbox
                       checked={selectedFilms.includes(film)}
@@ -85,7 +100,7 @@ export function FavoriteFilmsTable() {
                   <TableCell>{film.name}</TableCell>
                   <TableCell>{film.director}</TableCell>
                   <TableCell>{film.imdbRank}</TableCell>
-                  <TableCell><Button onClick={() => deleteFromFavorites(film)} variant="outline"><i className="fa-solid fa-trash-can text-red-500"></i></Button></TableCell>
+                  <TableCell><Button onClick={() => deleteFilm(film.id)} variant="outline"><i className="fa-solid fa-trash-can text-red-500"></i></Button></TableCell>
                 </TableRow>
               ))
             ) : (

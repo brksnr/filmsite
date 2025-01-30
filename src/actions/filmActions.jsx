@@ -18,7 +18,6 @@ export const getAllFilms = () => async (dispatch) => {
     try {
         const films = await fetchFilms();
         dispatch(setFilms(films));
-        console.log("All films:", films);
     } catch(error){
         console.error("Error fetching all films:", error);
     }
@@ -52,7 +51,6 @@ export const getAllStars = () => async (dispatch) => {
     try {
         const stars = await fetchStars();
         dispatch(setStars(stars));
-        console.log("All films:", stars);
     } catch(error){
         console.error("Error fetching all stars:", error);
     }
