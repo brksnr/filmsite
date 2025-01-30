@@ -1,6 +1,7 @@
 import { getAllGenres } from "@/actions/filmActions";
 import { Button } from "@/components/ui/button";
 import { SideBar } from "@/components/ui/sideBar";
+import { Footer } from "@/layout/Footer";
 import { Header } from "@/layout/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -43,6 +44,7 @@ export function GenreListPage () {
         </main>
       </div>
     </div>
+    <Footer/>
         </>
     )
 }

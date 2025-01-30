@@ -1,5 +1,6 @@
 import { FavoriteFilmsTable } from "@/components/ui/favoriteFilmsTable";
 import { SideBar } from "@/components/ui/SideBar";
+import { Footer } from "@/layout/Footer";
 import { Header } from "@/layout/Header";
 
 export function Favorites(){
@@ -10,6 +11,7 @@ export function Favorites(){
         <SideBar/>
         <FavoriteFilmsTable/>
         </div>
+        <Footer/>
         </>
     )
 }

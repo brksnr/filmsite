@@ -2,6 +2,7 @@ import { Header } from "@/layout/Header";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Footer } from "@/layout/Footer";
 
 export function SignUpPage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -97,6 +98,7 @@ export function SignUpPage() {
           </form>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

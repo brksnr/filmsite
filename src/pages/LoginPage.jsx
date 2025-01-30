@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "@/actions/userAction";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { SideBar } from "@/components/ui/SideBar";
+import { Footer } from "@/layout/Footer";
 
 export function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -110,6 +111,7 @@ export function LoginPage() {
       </div>
       </div>
       </div>
+      <Footer/>
     </>
   );
 }

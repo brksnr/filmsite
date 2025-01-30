@@ -64,16 +64,6 @@ export function Header(){
                       </Button>
             </nav>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <input
-                type="search"
-                placeholder="Find whatever you want"
-                className="pl-8 h-9 w-[200px] lg:w-[300px] rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors"
-              />
-            </div>
-          </div>
         </div>
       </header>
 
@@ -116,15 +106,14 @@ export function Header(){
                   <p className="flex items-center gap-4">{user.username} <i className="fa-solid fa-arrow-right-from-bracket"></i></p>
                 </div>
               )}
-                                 </div>
-                                 <br/>
-               
-                               <Button variant="ghost" className="w-full justify-start">
-                                 <span>Favorites</span>
-                               </Button>
-                               <Button variant="ghost" className="w-full justify-start">
-                                 <span>Watch List</span>
-                               </Button>
+               </div>
+                  <br/>
+                <Button variant="ghost" className="w-full justify-start">
+                  <span>Favorites</span>
+                </Button>
+                <Button variant="ghost" className="w-full justify-start">
+                  <span>Watch List</span>
+                </Button>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { getAllStars } from "@/actions/filmActions";
 import { Button } from "@/components/ui/button";
 import { SideBar } from "@/components/ui/sideBar";
+import { Footer } from "@/layout/Footer";
 import { Header } from "@/layout/Header";
 import axios from "axios";
 import { ChevronDown } from "lucide-react";
@@ -47,6 +48,7 @@ export function StarListPage(){
         </main>
       </div>
     </div>
+    <Footer/>
             </>
     )
 }

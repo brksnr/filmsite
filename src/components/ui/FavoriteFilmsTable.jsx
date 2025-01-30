@@ -9,6 +9,7 @@ import { useState } from "react";
 import { deleteFilmFromFavorites, userFavoriteFilms } from "@/actions/userAction";
 import { useEffect } from "react";
 import { fetchFavorites, removeFavoriteFilm } from "@/api";
+import { Footer } from "@/layout/Footer";
 
 export function FavoriteFilmsTable() {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export function FavoriteFilmsTable() {
   );
   
   return (
-    <div className="w-full mx-2 ">
+    <div className="w-full mx-1 ">
       <div className="flex items-center py-4">
       <Input
           placeholder="Search by name..."
@@ -114,5 +115,6 @@ export function FavoriteFilmsTable() {
         </Table>
       </div>
     </div>
+
   );
 }
