@@ -81,20 +81,21 @@ export function FilmListPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredFilms.map((film) => (
-                <div  key={film.id} className="flex flex-col gap-4 transition-transform transform hover:scale-105 hover:shadow-lg rounded-xl">
-                    <img onClick={() => handleFilmDetail(film.id)} src={film.imageUrl} className="hover:opacity-90 rounded-xl object-cover w-full h-full"></img>
-                    <div className="flex justify-between items-center">
-                            <div className="flex flex-col gap-4">
+                <div  key={film.id} className="flex flex-col gap-4 border rounded-md bg-gray-100">
+                    <img onClick={() => handleFilmDetail(film.id)} src={film.imageUrl} className="hover:opacity-90 object-cover w-full h-full transition-transform transform hover:scale-y-105 hover:shadow-lg"></img>
+                    <div className="flex flex-col gap-3 pb-6">
+                            <div className="flex w-full justify-between px-6 gap-4">
                                 <p className="text-xl text-black">{film.name}</p>
-                                <p className="text-lg font-semibold text-gray-400 mb-2">{film.genre.map((genre) => genre.name).join(", ")}</p>
-                            </div>
-                            <div>
-                                <Button className="rounded-full font-roboto font-bold">
-                                <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                                  {film.imdbRank}</Button>
-                            </div>
+                                <div>
+                                  <Button size="sm" className="rounded-md font-roboto font-bold bg-yellow-500">
+                                  <Star className="fill-yellow-400 text-yellow-400" />{film.imdbRank}</Button>
+                                </div>
+                            </div>          
+                            <div className="flex gap-2 flex-wrap px-6">
+                                    {film.genre.map((genre) => (<Button key={genre.id} className="bg-gray-100 border-gray-300" variant="outline" size="sm">{genre.name}</Button>))}
+                            </div>         
                     </div>
                 </div>
             ))}
