@@ -14,9 +14,9 @@ export const loginUser = async (email, password) => {
     }
   };
 
-export const fetchFilms = async () => {
+  export const fetchFilms = async (page, pageSize) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/films`);
+        const response = await axios.get(`${API_BASE_URL}/films?page=${page}&size=${pageSize}`);
         return response.data; 
     } catch (error) {
         console.error("Error fetching films:", error);

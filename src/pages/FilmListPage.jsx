@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ChevronDown, Search, Star } from "lucide-react";
+import { ChevronDown, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Header } from "@/layout/Header";
 import { SideBar } from "@/components/ui/sideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllFilms, getFilmsByGenre, setFilms } from "@/actions/filmActions";
 import { Footer } from "@/layout/Footer";
 import { Input } from "@/components/ui/input";
+import { fetchFilms } from "@/api";
+import { setFilms } from "@/actions/filmActions";
 
 
 export function FilmListPage() {
@@ -18,24 +18,32 @@ export function FilmListPage() {
     const dispatch = useDispatch();
     const films = useSelector((state) => state.films.films);
     const [searchQuery, setSearchQuery] = useState("");
+    const [page, setPage] = useState(0);
+    const [pageSize, setPageSize] = useState(10);
 
-
-    useEffect(() => {
-      const params = new URLSearchParams(location.search);
-      const selectedGenre = params.get("genre");
-
-      if (selectedGenre) {
-          dispatch(getFilmsByGenre(selectedGenre));
-      } else {
-          dispatch(getAllFilms());
+    const handlePageChange = async (newPage) => {
+      setPage(newPage);
+      dispatch(setFilms([]));  
+      try {
+        const data = await fetchFilms(newPage, pageSize); 
+        if (data && data.content) {
+          dispatch(setFilms(data.content));
+        }
+      } catch (error) {
+        console.error("Error fetching films:", error);
       }
-  }, [dispatch, location.search]);
+    };
+    
+    useEffect(() => {
+      handlePageChange(page);
+    }, [page, pageSize]);
+
     
     const handleFilmDetail = (id) => {
       history.push(`/filmdetail/${id}`);
     };
 
-    const filteredFilms = films.filter(film =>
+    const filteredFilms = films?.filter(film =>
       film.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -92,12 +100,18 @@ export function FilmListPage() {
             ))}
           </div>
           <div className="flex justify-center mt-6 space-x-1">
-            {[1, 2, 3, 4, 5].map((page) => (
-              <Button key={page} variant={page === 1 ? "default" : "outline"} size="icon" className="w-8 h-8">
-                {page}
-              </Button>
-            ))}
-          </div>
+        {[1, 2, 3, 4, 5].map((pageNumber) => (
+          <Button
+            key={pageNumber}
+            variant={pageNumber === page + 1 ? "default" : "outline"}
+            size="icon"
+            className="w-8 h-8"
+            onClick={() => handlePageChange(pageNumber - 1)}
+          >
+            {pageNumber}
+          </Button>
+        ))}
+      </div>
         </main>
       </div>
     </div>

@@ -63,8 +63,8 @@ export function FilmDetail(){
                 <div className="flex justify-between flex-wrap">
                 <h1 className="text-4xl text-white md:text-5xl font-bold mb-4">{selectedFilm.name}</h1>
                   <div className="flex gap-2 items-center flex-wrap">
-                      <Button onClick={() => handleAddFavorite(id)}> <i class="fa-regular fa-heart"></i> Add To Favorites</Button>
-                      <Button><i class="fa-regular fa-eye"></i>Add To Watch List</Button>
+                      <Button variant="default" className="hover:bg-slate-800" onClick={() => handleAddFavorite(id)}> <i className="fa-regular fa-heart"></i> Add To Favorites</Button>
+                      <Button variant="default" className="hover:bg-slate-800"><i className="fa-regular fa-eye"></i>Add To Watch List</Button>
                   </div>
                 </div>
                 

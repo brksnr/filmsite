@@ -14,14 +14,7 @@ export const setFilms = (films) => {
     }
 }
 
-export const getAllFilms = () => async (dispatch) => {
-    try {
-        const films = await fetchFilms();
-        dispatch(setFilms(films));
-    } catch(error){
-        console.error("Error fetching all films:", error);
-    }
-};
+
 
 export const setGenres = (genres) => {
     return {
